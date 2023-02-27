@@ -61,7 +61,7 @@
   position: absolute;
 }
 
-#game_elements_helicopter {
+#game_elements_energydrink {
   z-index: 1;
   border-width: 2px;
   border-color: black;
@@ -70,7 +70,7 @@
   left: 70%;
 }
 
-#game_elements_human {
+#game_elements_energydrink2 {
   z-index: 1;
   border-width: 2px;
   border-color: black;
@@ -80,7 +80,7 @@
   top: 25%;
 }
 
-#game_elements_helicopter img,
+#game_elements_sodacan img,
 #game_elements_human img {
   width: 150px;
   height: 150px;
