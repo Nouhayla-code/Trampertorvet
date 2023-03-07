@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: sans-serif;
+  user-select: none;
 }
 
 h2 {
@@ -110,10 +111,11 @@ p {
 
   top: 0;
   left: 10vw;
+  width: 10%;
 }
 
 #energydrink1_sprite {
-  width: 30%;
+  width: 100%;
 }
 
 #energydrink2_container {
@@ -121,10 +123,11 @@ p {
 
   top: 0;
   left: 40vw;
+  width: 10%;
 }
 
 #energydrink2_sprite {
-  width: 30%;
+  width: 100%;
 }
 
 #energydrink3_container {
@@ -132,32 +135,33 @@ p {
 
   top: 0;
   left: 70vw;
+  width: 10%;
 }
 
 #energydrink3_sprite {
-  width: 30%;
+  width: 100%;
 }
 
 #soda_container {
   position: absolute;
-
   top: 0;
   left: 30vw;
+  width: 11%;
 }
 
 #soda_sprite {
-  width: 30%;
+  width: 100%;
 }
 
 #heart_container {
   position: absolute;
-
   top: 0;
   left: 55vw;
+  width: 3%;
 }
 
 #heart_sprite {
-  width: 20%;
+  width: 100%;
 }
 /* positioner  */
 .position1 {
@@ -368,7 +372,7 @@ button {
 @keyframes shrink_kf {
   0% {
     scale: 1 1;
-    background-color: rgb(255, 3, 205);;
+    background-color: rgb(255, 3, 205);
   }
   50% {
     background-color: rgb(231, 74, 171);
