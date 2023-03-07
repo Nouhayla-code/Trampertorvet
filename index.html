@@ -4,47 +4,111 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="app.css" />
-
     <title>Trampertorvet</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="shortcut icon"
+      href="Images/energy-drink-2.png"
+      type="image/x-icon"
+    />
   </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap");
+  </style>
+
   <body>
     <div id="screen">
       <div id="game">
         <div id="game_background"></div>
-
+        <img src="images/Flæsketorvet.jpg" alt="baggrund" />
         <div id="game_elements">
-          <div id="energidrik1_container" class="falling2">
+          <div id="energydrink1_container">
             <img
-              src="https://o.remove.bg/downloads/8027cf12-fdeb-462e-b6ce-c97c717dedc3/energy-drink-removebg-preview.png"
-              alt=""
+              id="energydrink1_sprite"
+              src="https://cdn-icons-png.flaticon.com/512/778/778074.png"
+              alt="energidrik"
             />
-            <div id="energidrik1_container" class="falling2">
-              <img
-                src="https://o.remove.bg/downloads/8027cf12-fdeb-462e-b6ce-c97c717dedc3/energy-drink-removebg-preview.png"
-                alt=""
-              />
-            </div>
-            <img src="billede" />
           </div>
-          <img src="billede" />
+          <div id="energydrink2_container">
+            <img
+              id="energydrink2_sprite"
+              src="https://cdn-icons-png.flaticon.com/512/778/778074.png"
+              alt="energidrik"
+            />
+          </div>
+          <div id="energydrink3_container">
+            <img
+              id="energydrink3_sprite"
+              src="https://cdn-icons-png.flaticon.com/512/778/778074.png"
+              alt="energidrik"
+            />
+          </div>
+
+          <div id="soda_container">
+            <img
+              id="soda_sprite"
+              src="https://cdn-icons-png.flaticon.com/512/184/184472.png"
+              alt="soda"
+            />
+          </div>
+
+          <div id="heart_container">
+            <img id="heart_sprite" src="Images/heart.png" alt="hjerte" />
+          </div>
         </div>
-
-        <div id="game_ui"></div>
+        <div id="game_ui">
+          <div id="score_board">
+            <span id="energy_count">0</span>
+            <img id="energy_image" src="" />
+          </div>
+          <div id="life_board">
+            <img id="heart1" src="Images/heart.png" class="active_heart" />
+            <img id="heart2" src="Images/heart.png" class="active_heart" />
+            <img id="heart3" src="Images/heart.png" class="active_heart" />
+          </div>
+          <div id="time_board">
+            <div id="time_container"><div id="time_sprite"></div></div>
+          </div>
+        </div>
       </div>
-
-      <div id="start" class="hidden">
-        <p>Game Start</p>
+      <div id="start">
+        <div id="box"></div>
+        <h2>Trampertorvet</h2>
+        <p>SAML 10 ENERGIDRIKKE SÅ VI KAN TRAMPE PÅ DE ANDRE KÆLLINGER</p>
+        <p>DRIK IK DE DER KLAMME SODAVAND</p>
+        <button id="btn_start" class="pulse">Start</button>
       </div>
-
       <div id="game_over" class="hidden">
-        <p>Game Over</p>
+        <div id="anden-box"></div>
+        <h2>GAME OVER !</h2>
+        <p>
+          DIN SLØVE KÆLLING DU FIK
+          <span id="energycount">x</span> ENERGIDRIKKE!
+        </p>
+        <p>DU SKAL BRUGE 10 ENERGRIDRIKKE.</p>
+        <button id="btn_restart" class="pulse">Restart Game</button>
       </div>
-
       <div id="level_complete" class="hidden">
-        <p>Level Complete</p>
+        <div id="tredje-box"></div>
+        <h2>Level Complete</h2>
+        <p>TESSA OKAAAAAY, NU SKAL DER TRAMPES!!</p>
+        <button id="btn_go_to_start" class="pulse">Go to start</button>
       </div>
     </div>
+
+    <!-- tilføj alle audi ellementer her -->
+    <audio id="Trampersang" src="Sounds/TRAMPER BAGRRUNDS MUSIK.mp3"></audio>
+    <audio id="Energi" src="Sounds/soda-can-102003.mp3"></audio>
+    <audio id="sodavand" src="Sounds/shit-86106.mp3"></audio>
+    <audio
+      id="Game_done"
+      src="Sounds/no-luck-too-bad-disappointing-sound-effect-112943.mp3"
+    ></audio>
+    <audio
+      id="Færdig"
+      src="Sounds/808-kick-boom-bass-snare-hit-hats-roll-140-bpm-3-trap-loop-15-12764.mp3"
+    ></audio>
+    <audio id="Liv" src="Sounds/coin.mp3"></audio>
+    <script src="script.js"></script>
   </body>
-  <script src="app.js"></script>
 </html>
