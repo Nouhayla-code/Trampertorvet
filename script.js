@@ -40,21 +40,20 @@ function resetLives() {
 function resetPoints() {
   // nulstil point
   points = 0;
-  // nulstil vising af point
-  // displayPoints();
+ 
 }
 
 function startGame() {
   resetLives();
   resetPoints();
   showGameScreen();
-  // bagrundsmusik
+  // baggrundsmusik
   document.querySelector("#Trampersang").play();
 
-  // start alle animationer
+  // starter alle animationer
   startAllAnimations();
 
-  // start timer
+  // starter timer
   startTimer();
 
   // Registrer click
@@ -74,7 +73,7 @@ function startGame() {
     .querySelector("#heart_container")
     .addEventListener("click", clickHeart);
 
-  // Registrer når bunden rammes
+  // Registrer når bunden rammes så alle animationer restarter
   document
     .querySelector("#energydrink1_container")
     .addEventListener("animationiteration", energyRestart);
@@ -87,14 +86,14 @@ function startGame() {
 }
 
 function startAllAnimations() {
-  // Start falling animationer
+  // Starter falling animationer
   document.querySelector("#energydrink1_container").classList.add("falling");
   document.querySelector("#energydrink2_container").classList.add("falling");
   document.querySelector("#energydrink3_container").classList.add("falling");
   document.querySelector("#soda_container").classList.add("falling");
   document.querySelector("#heart_container").classList.add("falling");
 
-  // Sæt position klasser
+  // Sætter positions klasser
   document.querySelector("#energydrink1_container").classList.add("position1");
   document.querySelector("#energydrink2_container").classList.add("position2");
   document.querySelector("#energydrink3_container").classList.add("position3");
@@ -103,55 +102,60 @@ function startAllAnimations() {
 }
 function clickenergy() {
   console.log("Click energy");
-  // Brug en energy variabel i stedet for gentagne querySelectors
+  // Bruger nu  en energy variabel i stedet for gentagne querySelectors
   const energy = this; // document.querySelector("#Energydrink1_container");
 
   // Forhindr gentagne clicks
   energy.removeEventListener("click", clickenergy);
 
-  // Stop energy container
+  // Stopper energy container
   energy.classList.add("paused");
 
-  // sæt forsvind-animation på sprite
+  // sætter en forsvind-animation på sprite
   energy.querySelector("img").classList.add("zoom_out");
 
-  // når forsvind-animation er færdig: coinGone
+  // når forsvind-animation er færdige så forsvinder min energy 
   energy.addEventListener("animationend", energyGone);
 
-  // Giv point
+  // Giver point ved click 
   incrementPoints();
 
-  // document.querySelector("#Energi").currentTime = 0;
+  // sætter lydeffekt på click af energy
   document.querySelector("#Energi").play();
 }
 function energyGone() {
+  // tester om energygone functionen reagere i mit spil 
   console.log("energy gone");
-  // Brug en energy variabel i stedet for gentagne querySelectors
+  // Bruger  en energy variabel i stedet for gentagne querySelectors
   const energy = this; //document.querySelector("#Energydrink1_container");
-  // fjern event der bringer os herind
+
+  // fjerner nu en event der bringer os herind
   energy.removeEventListener("animationend", energyGone);
 
-  // fjern forsvind-animation på sprite
+  // fjerner forsvind-animation på enegy 
   energy.querySelector("img").classList.remove("zoom_out");
 
-  // fjern pause
+  // fjerner pause functionen 
   energy.classList.remove("paused");
 
+  // restarter nu hele procesen igen 
   energyRestart.call(this);
 
   // gør det muligt at klikke på energy igen
   energy.addEventListener("click", clickenergy);
 }
 function energyRestart() {
+ // tester consolen om den reagere på functionen 
   console.log("energy restart");
+ // Bruger nu  en energy variabel i stedet for gentagne querySelectors
   const energy = this;
 
-  // genstart falling animation
+  // genstarter falling animations
   energy.classList.remove("falling");
   energy.offsetWidth;
   energy.classList.add("falling");
 
-  // fjern alle positioner
+  // fjerner alle positioner
   energy.classList.remove(
     "position1",
     "position2",
@@ -160,28 +164,32 @@ function energyRestart() {
     "position5"
   );
 
-  // sæt position til en ny klasse
+  // sætter nu  positioner til en ny klasse
   const p = Math.ceil(Math.random() * 5);
   energy.classList.add(`position${p}`);
 }
 function clickSoda() {
+  // bruger console.log til at teste min function i consolen 
   console.log("Click Soda");
+
   // Forhindr gentagne clicks
   document
     .querySelector("#soda_container")
     .removeEventListener("click", clickSoda);
 
-  // Stop coin container
+  // Stopper soda container
   document.querySelector("#soda_container").classList.add("paused");
 
-  // sæt forsvind-animation på coin
+  // sæt forsvind-animation på soda
   document.querySelector("#soda_sprite").classList.add("zoom_in");
 
-  // når forsvind-animation er færdig: coinGone
+  // når forsvind-animation er færdig så forsvinder min
   document
     .querySelector("#soda_container")
     .addEventListener("animationend", sodaGone);
-  decrementLives();
+  // mister liv ved click af soda 
+    decrementLives();
+    // lydeffekt til click af soda
   document.querySelector("#sodavand").play();
 }
 function sodaGone() {
@@ -224,9 +232,11 @@ function clickHeart() {
     .querySelector("#heart_container")
     .addEventListener("animationend", heartGone);
 
+  // ved click får man nyt liv
   if (lives < 3) {
     incrementLives();
   }
+  // lydeffekt til click af heart 
   document.querySelector("#Liv").play();
 }
 function heartGone() {
@@ -253,29 +263,41 @@ function heartGone() {
 }
 function incrementPoints() {
   console.log("Giv point");
+  // ved click opnå point 
   points++;
+  // tester functionerne i consolen 
   console.log("har nu " + points + " point");
+  // viser point i højre hjørne 
   displayPoints();
 
+  // starter levelcomplet skærm når 10 point er opnået 
   if (points >= 10) {
     levelComplete();
   }
 }
 function displayPoints() {
+  // tester den i consolen 
   console.log("vis point");
+  // ved click af energy = point 
   document.querySelector("#energy_count").textContent = points;
 }
 function decrementLives() {
+  // tester i consolen 
   console.log("mist et liv");
+  // viser gameover skærm hvis liv erunder 1
   if (lives <= 1) {
     gameOver();
   }
+  // viser antal liv i hjørnet 
   showDecrementedLives();
   lives--;
 }
 function incrementLives() {
+  // tester functionen i consolen 
   console.log("få et liv");
+  
   lives++;
+  // viser de opnået liv 
   showIncrementedLives();
 }
 function showDecrementedLives() {
@@ -288,44 +310,56 @@ function showIncrementedLives() {
 }
 function gameOver() {
   console.log("Game Over");
+  // sætter baggrundssangen på pause 
   document.querySelector("#Trampersang").pause();
+  // fjerner hidden fra min gameover skærm så den er synlig 
   document.querySelector("#game_over").classList.remove("hidden");
+  // afspiller gameover lydeffekt
   document.querySelector("#Game_done").play();
-
+  //  stopper spillet
   stopGame();
+  // viser opnået point i alt
   document.querySelector("#energycount").textContent = points;
 }
 function levelComplete() {
+  // tester consolen 
   console.log("Level Complete");
+  // sætter bagrundsmusik på pause
   document.querySelector("#Trampersang").pause();
+  // gør min levelcomplet skærm synlig 
   document.querySelector("#level_complete").classList.remove("hidden");
+  // afspiller min levelcomplet lydeffekt
   document.querySelector("#Færdig").play();
-
+  // stopper spillet
   stopGame();
-
+  // viser det opnået antal point 
   document.querySelector("#energy_count").textContent = points;
 }
 function startTimer() {
+  // tester min function i consolen 
   console.log("start timer");
-
+  // indsætter min animtaion shrink til min sprite 
   document.querySelector("#time_sprite").classList.add("shrink");
+
   document.querySelector("#time_sprite").addEventListener("animationend", timeIsUp);
 
 
 }
 
 function timeIsUp() {
+  // tester function i consolen 
   console.log("Tiden er gået!");
-
+  // hvis point over 10 når tiden er gået så skal levelcomplete skærm vises 
   if (points >= 10) {
     levelComplete();
+    // ellers så skal gameover skærm vises 
   } else {
     gameOver();
   }
 }
 
 function stopGame() {
-  // Stop animationer
+  // Stop alle animationer
   document.querySelector("#energydrink1_container").classList.remove("falling");
   document.querySelector("#energydrink2_container").classList.remove("falling");
   document.querySelector("#energydrink3_container").classList.remove("falling");
@@ -349,9 +383,7 @@ function stopGame() {
     .querySelector("#heart_container")
     .removeEventListener("click", clickHeart);
 
-  // // Stop og nulstil lyde, fx baggrundsmusik
-  // document.querySelector("#Trampersang").pause();
-  // document.querySelector("#Trampersang").currentTime = 0;
+
   // nulstil timer - fjern animationen fra timeren (fjern klassen shrink fra time_sprite)
   document.querySelector("#time_sprite").classList.remove("shrink");
 }
